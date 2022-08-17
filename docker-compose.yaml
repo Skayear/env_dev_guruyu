@@ -6,7 +6,7 @@ services:
             image: skayear/guruyu_api:latest
             restart: always
             ports:
-                - 5000:5432
+                - 5000:54320
             volumes:
                 - /app
             command: dotnet ./Api.dll
@@ -16,7 +16,7 @@ services:
           image: postgres:12 
           restart: always
           ports:
-           - 5432:5432
+           - 54320:54320
           volumes: 
             - ./dbfiles:/docker-entrypoint-initdb.d
             - /var/lib/postgres_data_prep:/var/lib/postgresql/data
@@ -31,7 +31,7 @@ services:
             image: adminer
             restart: always
             ports:
-             - 54321:5432
+             - 54321:54320
 
 networks:
   dev_guruyu:
