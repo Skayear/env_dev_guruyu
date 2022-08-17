@@ -2,6 +2,7 @@ version: '3.3'
 
 services:
         api:
+            container_name: guruyu_api
             image: skayear/guruyu_api:latest
             restart: always
             ports:
@@ -9,17 +10,27 @@ services:
             volumes:
                 - /app
             command: dotnet ./Api.dll
+
         postgres:
+          container_name: postgres_dev
           image: postgres:12 
           restart: always
-          environment:
-           - POSTGRES_PASSWORD='guruyu1234'
-           - POSTGRES_USER='GuruyuLiga'
-           - POSTGRES_DB='GuruyuDb'
           ports:
-           - 5432:5432
+           - 54320:54320
           volumes: 
-            - db:/var/lib/postgresql/data
+            - ./dbfiles:/docker-entrypoint-initdb.d
+            - /var/lib/postgres_data_prep:/var/lib/postgresql/data
+          environment:
+            POSTGRES_PASSWORD: guruyu1234
+            POSTGRES_USER: GuruyuLiga
+            POSTGRES_DB: GuruyuDb
+          networks:     
+            - dev_guruyu
+
+networks:
+  dev_guruyu:
+    driver: bridge
+
         # adminer:
         #   image: adminer
         #   restart: always
