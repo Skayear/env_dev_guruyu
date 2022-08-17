@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+        api:
+            image: skayear/guruyu_api:latest
+            restart: always
+            ports:
+                - 5000:5000
+            volumes:
+                - /app
+            command: dotnet ./Api.dll
+        postgres:
+          image: postgres:12 
+          restart: always
+          environment:
+           - POSTGRES_PASSWORD='guruyu1234'
+           - POSTGRES_USER='GuruyuLiga'
+           - POSTGRES_DB='GuruyuDb'
+          ports:
+           - 5432:5432
+          volumes: 
+            - db:/var/lib/postgresql/data
+        # adminer:
+        #   image: adminer
+        #   restart: always
+        #   ports:
+        #     - 54321:54321
