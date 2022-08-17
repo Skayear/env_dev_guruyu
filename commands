@@ -1,0 +1,11 @@
+        # docker volume create pgdata_dev
+        # docker run -p 5432:5432 \ 
+        # --name dev_guruyudb \
+        # --network dev_guruyu \
+        # -e POSTGRES_PASSWORD='guruyu1234' \
+        # -e POSTGRES_USER='GuruyuLiga' \
+        # -e POSTGRES_DB='GuruyuDb' \
+        # -v pgdata_dev:/var/lib/postgresql/data \
+        # postgres:12-alpine
+
+#docker run --name postgresql -e POSTGRES_USER='GuruyuLiga' -e POSTGRES_PASSWORD='guruyu1234' -e POSTGRES_DB='GuruyuDb' -p 4561:4561 -v /data:/var/lib/postgresql/data --network dev_guruyu -d postgres:12-alpine
